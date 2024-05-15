@@ -21,14 +21,14 @@ export const Plugin: FlowerPlugin =
 
     PluginRegistered: function (flower, logger)
     {
-        this.flower = flower;
-        this.logger = logger;
-        this.logger.write("Loaded");
+        Plugin.flower = flower;
+        Plugin.logger = logger;
+        Plugin.logger.write("Loaded");
     },
 
     PluginAwake: function ()
     {
-        this.logger.write("Awake");
+        Plugin.logger.write("Awake");
     },
 
 }
