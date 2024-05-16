@@ -2,33 +2,31 @@
 Flower plugin example/template
 */
 
-import { FlowerAPI } from "@flowerloader/api/FlowerAPI";
-import { FlowerPlugin } from "@flowerloader/api/FlowerPlugin";
-import { LogSource } from "@flowerloader/api/logSource";
+import { FlowerMeta, IFlowerPlugin, FlowerAPI, LogSource } from "@flowerloader/api";
 
-export const Plugin: FlowerPlugin =
+export const META: FlowerMeta =
 {
     GUID: "flowerteam.plugintemplate",
-
     VERSION: "1.0.0",
-
     NAME: "Flower Plugin Template",
+    ENABLED: true
+};
 
-    ENABLED: false,
+export default class Plugin implements IFlowerPlugin
+{
 
-    flower: {} as FlowerAPI,
-    logger: {} as LogSource,
+    flower: FlowerAPI
+    logger: LogSource
 
-    PluginRegistered: function (flower, logger)
+    Awake()
     {
-        Plugin.flower = flower;
-        Plugin.logger = logger;
-        Plugin.logger.write("Loaded");
-    },
+        this.logger.write("Awake");
+    }
 
-    PluginAwake: function ()
+    constructor(flower: FlowerAPI, logger: LogSource)
     {
-        Plugin.logger.write("Awake");
-    },
-
+        this.flower = flower;
+        this.logger = logger;
+        this.logger.write("Loaded");
+    }
 }
