@@ -2,31 +2,32 @@
 Flower plugin example/template
 */
 
-import { FlowerMeta, IFlowerPlugin, FlowerAPI, LogSource } from "@flowerloader/api";
+import { FlowerMeta, FlowerAPI, LogSource, BasePlugin } from "@flowerloader/api";
+import { GameDataCOAW } from "@flowerloader/coawtypes";
 
 export const META: FlowerMeta =
 {
     GUID: "flowerteam.plugintemplate",
-    VERSION: "1.0.0",
+    VERSION: "1.2.0",
     NAME: "Flower Plugin Template",
     ENABLED: true
 };
 
-export default class Plugin implements IFlowerPlugin
+export default class Plugin extends BasePlugin<GameDataCOAW>
 {
-
-    flower: FlowerAPI
-    logger: LogSource
-
     Awake()
     {
         this.logger.write("Awake");
     }
 
-    constructor(flower: FlowerAPI, logger: LogSource)
+    /**
+     * Uncomment this to add code to your constructor
+     * Make sure to always call your base constructor via super()
+     * 
+    constructor(flower: FlowerAPI<GameDataCOAW>, logger: LogSource)
     {
-        this.flower = flower;
-        this.logger = logger;
+        super(flower, logger);
         this.logger.write("Loaded");
     }
+    */
 }
